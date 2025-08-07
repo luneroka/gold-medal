@@ -15,4 +15,5 @@ public interface GoldMedalRepository extends CrudRepository<GoldMedal, Integer> 
   List<GoldMedal> findByCountryOrderByNameDesc(String country);
   List<GoldMedal> findByCountryOrderByEventAsc(String country);
   List<GoldMedal> findByCountryOrderByEventDesc(String country);
+
 }
