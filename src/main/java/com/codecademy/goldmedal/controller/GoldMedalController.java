@@ -83,14 +83,13 @@ public class GoldMedalController {
     }
 
     var country = countryOptional.get();
-    var goldMedalCount = // TODO: get the medal count
+    var goldMedalCount = goldMedalRepository.getCountByCountry(countryName);
 
-        var summerWins = // TODO: get the collection of wins at the Summer Olympics, sorted by year in ascending order
-        var numberSummerWins = summerWins.size() > 0 ? summerWins.size() : null;
-    var totalSummerEvents = // TODO: get the total number of events at the Summer Olympics
-        var
-    percentageTotalSummerWins = totalSummerEvents != 0 && numberSummerWins != null ? (float) summerWins.size() / totalSummerEvents : null;
-    var yearFirstSummerWin = summerWins.size() > 0 ? summerWins.get(0).getYear() : null;
+    var summerWins = goldMedalRepository.getByCountryAndSeasonOrderByYearAsc(countryName, "Summer");
+    var numberSummerWins = !summerWins.isEmpty() ? summerWins.size() : null;
+    var totalSummerEvents = goldMedalRepository.getCountBySeason("Summer");
+    var percentageTotalSummerWins = totalSummerEvents != 0 && numberSummerWins != null ? (float) summerWins.size() / totalSummerEvents : null;
+    var yearFirstSummerWin = !summerWins.isEmpty() ? summerWins.get(0).getYear() : null;
 
     var winterWins = // TODO: get the collection of wins at the Winter Olympics
         var numberWinterWins = winterWins.size() > 0 ? winterWins.size() : null;
