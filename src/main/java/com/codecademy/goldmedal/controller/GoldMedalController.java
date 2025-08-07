@@ -91,12 +91,11 @@ public class GoldMedalController {
     var percentageTotalSummerWins = totalSummerEvents != 0 && numberSummerWins != null ? (float) summerWins.size() / totalSummerEvents : null;
     var yearFirstSummerWin = !summerWins.isEmpty() ? summerWins.get(0).getYear() : null;
 
-    var winterWins = // TODO: get the collection of wins at the Winter Olympics
-        var numberWinterWins = winterWins.size() > 0 ? winterWins.size() : null;
-    var totalWinterEvents = // TODO: get the total number of events at the Winter Olympics, sorted by year in ascending order
-        var
-    percentageTotalWinterWins = totalWinterEvents != 0 && numberWinterWins != null ? (float) winterWins.size() / totalWinterEvents : null;
-    var yearFirstWinterWin = winterWins.size() > 0 ? winterWins.get(0).getYear() : null;
+    var winterWins = goldMedalRepository.getByCountryAndSeasonOrderByYearAsc(countryName, "Winter");
+        var numberWinterWins = !winterWins.isEmpty() ? winterWins.size() : null;
+    var totalWinterEvents = goldMedalRepository.getCountBySeason("Winter");
+    var percentageTotalWinterWins = totalWinterEvents != 0 && numberWinterWins != null ? (float) winterWins.size() / totalWinterEvents : null;
+    var yearFirstWinterWin = !winterWins.isEmpty() ? winterWins.get(0).getYear() : null;
 
     var numberEventsWonByFemaleAthletes = // TODO: get the number of wins by female athletes
         var numberEventsWonByMaleAthletes = // TODO: get the number of wins by male athletes
