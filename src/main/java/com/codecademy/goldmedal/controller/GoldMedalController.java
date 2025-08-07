@@ -41,7 +41,9 @@ public class GoldMedalController {
         List<GoldMedal> medalsList;
         switch (sortBy) {
             case "year":
-                medalsList = // TODO: list of medals sorted by year in the given order
+                medalsList = ascendingOrder
+                    ? goldMedalRepository.findByCountryOrderByYearAsc(countryName)
+                    : goldMedalRepository.findByCountryOrderByYearDesc(countryName);
                 break;
             case "season":
                 medalsList = // TODO: list of medals sorted by season in the given order
