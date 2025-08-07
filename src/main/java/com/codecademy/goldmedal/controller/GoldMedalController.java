@@ -119,17 +119,17 @@ public class GoldMedalController {
     List<Country> countries;
     switch (sortBy) {
       case "name":
-        countries = // TODO: list of countries sorted by name in the given order
+        countries = ascendingOrder ? countryRepository.getAllByOrderByNameAsc() : countryRepository.getAllByOrderByNameDesc();
         break;
       case "gdp":
-        countries = // TODO: list of countries sorted by gdp in the given order
+        countries = ascendingOrder ? countryRepository.getAllByOrderByGdpAsc() : countryRepository.getAllByOrderByGdpDesc();
         break;
       case "population":
-        countries = // TODO: list of countries sorted by population in the given order
+        countries = ascendingOrder ? countryRepository.getAllByOrderByPopulationAsc() : countryRepository.getAllByOrderByPopulationDesc();
         break;
       case "medals":
       default:
-        countries = // TODO: list of countries in any order you choose; for sorting by medal count, additional logic below will handle that
+        countries = countryRepository.getAllByOrderByNameAsc();
         break;
     }
 
@@ -153,7 +153,7 @@ public class GoldMedalController {
   private List<CountrySummary> getCountrySummariesWithMedalCount(List<Country> countries) {
     List<CountrySummary> countrySummaries = new ArrayList<>();
     for (var country : countries) {
-      var goldMedalCount = // TODO: get count of medals for the given country
+      var goldMedalCount = goldMedalRepository.getCountByCountry(country.getName());
           countrySummaries.add(new CountrySummary(country, goldMedalCount));
     }
     return countrySummaries;
