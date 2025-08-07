@@ -56,10 +56,14 @@ public class GoldMedalController {
             : goldMedalRepository.findByCountryOrderByCityDesc(countryName);
         break;
       case "name":
-        medalsList = // TODO: list of medals sorted by athlete's name in the given order
+        medalsList = ascendingOrder
+            ? goldMedalRepository.findByCountryOrderByNameAsc(countryName)
+            : goldMedalRepository.findByCountryOrderByNameDesc(countryName);
         break;
       case "event":
-        medalsList = // TODO: list of medals sorted by event in the given order
+        medalsList = ascendingOrder
+            ? goldMedalRepository.findByCountryOrderByEventAsc(countryName)
+            : goldMedalRepository.findByCountryOrderByEventDesc(countryName);
         break;
       default:
         medalsList = new ArrayList<>();
