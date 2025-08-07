@@ -5,7 +5,7 @@ import com.codecademy.goldmedal.model.GoldMedal;
 import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
-public interface GoldMedalRepository extends CrudRepository<GoldMedal, Integer> {
+public interface GoldMedalRepository extends CrudRepository<GoldMedal, Long> {
   List<GoldMedal> findByCountryOrderByYearAsc(String country);
   List<GoldMedal> findByCountryOrderByYearDesc(String country);
   List<GoldMedal> findByCountryOrderBySeasonAsc(String country);
