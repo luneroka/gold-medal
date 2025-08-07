@@ -7,4 +7,6 @@ import java.util.List;
 public interface GoldMedalRepository extends CrudRepository<GoldMedal, Integer> {
   List<GoldMedal> findByCountryOrderByYearAsc(String country);
   List<GoldMedal> findByCountryOrderByYearDesc(String country);
+  List<GoldMedal> findByCountryOrderBySeasonAsc(String country);
+  List<GoldMedal> findByCountryOrderBySeasonDesc(String country);
 }
